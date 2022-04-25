@@ -1,6 +1,6 @@
 package api.foodstacks.model
 
-open class BaseShop(
+abstract class BaseShop(
     val id: String?,
     val userId: String
 )
