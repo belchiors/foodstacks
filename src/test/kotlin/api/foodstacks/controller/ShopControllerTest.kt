@@ -45,6 +45,6 @@ class ShopControllerTest {
     fun `test if we can can get a list of shops`() {
         val response = shopController.getAll()
         assertThat(response.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(response.body is List<*>)
+        assertThat(response.body is List<BaseShop>)
     }
 }
