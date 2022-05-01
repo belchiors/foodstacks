@@ -3,6 +3,7 @@ package api.foodstacks.controller
 import api.foodstacks.model.Shop
 import api.foodstacks.model.BaseShop
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.mockito.InjectMocks
@@ -30,7 +31,7 @@ class ShopControllerTest {
         val shopMock = buildShopModel()
         val response = shopController.getShop(shopMock.id)
         assertThat(response.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(response.body is BaseShop)
+        Assertions.assertEquals(response.body?.id, shopMock.id)
     }
 
     @Test
@@ -38,7 +39,7 @@ class ShopControllerTest {
         val shopMock = buildShopModel()
         val response = shopController.create(shopMock)
         assertThat(response.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(response.body is BaseShop)
+        Assertions.assertEquals(response.body?.id, shopMock.id)
     }
 
     @Test
