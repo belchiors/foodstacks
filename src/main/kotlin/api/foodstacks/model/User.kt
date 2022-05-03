@@ -6,7 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat
 import java.time.LocalDateTime
 import java.util.*
 
-@Document
+@Document("users")
 data class User (
     @Id
     val id: String = UUID.randomUUID().toString(),
