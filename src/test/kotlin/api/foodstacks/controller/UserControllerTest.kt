@@ -35,6 +35,17 @@ class UserControllerTest {
         assertEquals(userMock.id, response.body?.id)
     }
 
+    @Test
+    fun `get an user with success`() {
+        val userMock = buildUser()
+
+        whenever(userService.getById(userMock.id)) doReturn userMock
+        val response = usersController.findUserById(userMock.id)
+
+        verify(userService, times(1)).getById(userMock.id)
+        assertEquals(userMock.id, response.body?.id)
+    }
+
     private fun buildUser() : User {
         return User(
             id = "1",
