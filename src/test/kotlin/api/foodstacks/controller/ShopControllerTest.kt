@@ -1,7 +1,6 @@
 package api.foodstacks.controller
 
 import api.foodstacks.model.Shop
-import api.foodstacks.model.BaseShop
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
