@@ -1,10 +1,12 @@
 package api.foodstacks.controller
 
 import api.foodstacks.model.Shop
+import api.foodstacks.service.ShopService
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.mockito.InjectMocks
+import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 import org.springframework.http.HttpStatus
 import java.util.*
@@ -17,6 +19,9 @@ class ShopControllerTest {
 
     @InjectMocks
     lateinit var shopController: ShopController
+
+    @Mock
+    lateinit var shopService: ShopService
 
     private fun buildShopModel(): Shop {
         return Shop(
