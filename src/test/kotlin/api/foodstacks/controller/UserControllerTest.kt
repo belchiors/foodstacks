@@ -10,6 +10,7 @@ import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 import java.time.LocalDateTime
+import java.util.*
 
 class UserControllerTest {
 
@@ -39,7 +40,7 @@ class UserControllerTest {
     fun `get an user with success`() {
         val userMock = buildUser()
 
-        whenever(userService.getById(userMock.id)) doReturn userMock
+        whenever(userService.getById(userMock.id)).thenReturn(Optional.of(userMock))
         val response = usersController.findUserById(userMock.id)
 
         verify(userService, times(1)).getById(userMock.id)

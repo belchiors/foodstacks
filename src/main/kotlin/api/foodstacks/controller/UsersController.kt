@@ -23,8 +23,9 @@ class UsersController (
     @GetMapping("/users/{userId}")
     fun findUserById(@PathVariable userId: String) : ResponseEntity<User> {
         logger.info("action=gettingUser, userId=$userId")
-        val user = userService.getById(userId)
 
-        return ResponseEntity.ok(user)
+        return userService.getById(userId).map {
+            ResponseEntity.ok(it)
+        }.orElse(ResponseEntity.notFound().build())
     }
 }
