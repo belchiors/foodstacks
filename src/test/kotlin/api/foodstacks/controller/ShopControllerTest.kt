@@ -28,6 +28,7 @@ class ShopControllerTest {
             id = UUID.randomUUID().toString(),
             userId = UUID.randomUUID().toString(),
             name = "Foodstacks",
+            number = "5581983029845",
             description = "Doces e salgados"
         )
     }
