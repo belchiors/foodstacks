@@ -7,11 +7,12 @@ import java.util.*
 
 @Document("shops")
 @JsonIgnoreProperties(ignoreUnknown = true)
-class Shop(
+data class Shop(
     @Id val id: String = UUID.randomUUID().toString(),
     val userId: String,
     val name: String,
     val description: String,
+    val number: String,
     val walink: String? = null,
     val active: Boolean = true,
     val status: Boolean = false,

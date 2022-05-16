@@ -4,9 +4,7 @@ import api.foodstacks.model.User
 import api.foodstacks.service.UserService
 import org.slf4j.LoggerFactory
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 class UsersController (
@@ -20,5 +18,14 @@ class UsersController (
         val userCreated = userService.create(user)
 
         return ResponseEntity.ok(userCreated)
+    }
+
+    @GetMapping("/users/{userId}")
+    fun findUserById(@PathVariable userId: String) : ResponseEntity<User> {
+        logger.info("action=gettingUser, userId=$userId")
+
+        return userService.getById(userId).map {
+            ResponseEntity.ok(it)
+        }.orElse(ResponseEntity.notFound().build())
     }
 }
