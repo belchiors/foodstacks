@@ -15,7 +15,15 @@ class UsersController (
     private val logger = LoggerFactory.getLogger(javaClass)
 
     @PostMapping("/users")
-    fun createUser(@RequestBody user: User) : ResponseEntity<User> {
+    fun createUser(@RequestBody user: User) : ResponseEntity<Any> {
+        if (userService.existsByCpf(user.cpf)) {
+            return ResponseEntity("CPF já cadastrado", HttpStatus.CONFLICT)
+        }
+
+        if (userService.existsByEmail(user.email)) {
+            return ResponseEntity("Email já cadastrado", HttpStatus.CONFLICT)
+        }
+
         logger.info("action=creatingUser, user=$user")
         val userCreated = userService.create(user)
 

@@ -22,6 +22,14 @@ class UserService(
         return userRepository.findById(userId)
     }
 
+    fun existsByEmail(email: String): Boolean {
+        return userRepository.existsByEmail(email)
+    }
+
+    fun existsByCpf(cpf: String): Boolean {
+        return userRepository.existsByCpf(cpf)
+    }
+
     fun getByEmail(email: String): Optional<User> {
         return userRepository.findByEmail(email)
     }
