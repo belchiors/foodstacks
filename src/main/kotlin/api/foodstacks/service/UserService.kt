@@ -21,4 +21,24 @@ class UserService(
         logger.info("action=searchingUser, userId=$userId")
         return userRepository.findById(userId)
     }
+
+    fun existsByEmail(email: String): Boolean {
+        return userRepository.existsByEmail(email)
+    }
+
+    fun existsByCpf(cpf: String): Boolean {
+        return userRepository.existsByCpf(cpf)
+    }
+
+    fun getByEmail(email: String): Optional<User> {
+        return userRepository.findByEmail(email)
+    }
+
+    fun validatePassword(email: String, password: String): Boolean {
+        val user = userRepository.findByEmail(email)
+        if (!user.isPresent || user.get().password != password) {
+            return false
+        }
+        return true
+    }
 }
