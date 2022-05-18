@@ -16,6 +16,13 @@ class ShopService(private val shopRepository: ShopRepository) {
     }
 
     fun create(shop: Shop): Shop {
-        return shopRepository.save(shop)
+        val newShop = shop.copy(
+            walink = generateWhatsappLink(shop.number)
+        )
+        return shopRepository.save(newShop)
+    }
+
+    fun generateWhatsappLink(number : String) : String {
+        return "https://api.whatsapp.com/send?phone=$number"
     }
 }

@@ -12,6 +12,7 @@ data class Shop(
     val userId: String,
     val name: String,
     val description: String,
+    val number: String,
     val walink: String? = null,
     val active: Boolean = true,
     val status: Boolean = false,

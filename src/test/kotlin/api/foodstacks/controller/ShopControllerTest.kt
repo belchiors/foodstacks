@@ -30,6 +30,7 @@ class ShopControllerTest {
             name = "Foodstacks",
             description = "Doces e salgados",
             status = false
+            number = "5581983029845",
         )
     }
 
