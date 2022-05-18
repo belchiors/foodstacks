@@ -50,6 +50,6 @@ class UsersController (
             return ResponseEntity("Email ou senha inválidos", HttpStatus.FORBIDDEN)
         }
 
-        return ResponseEntity(mapOf("userId" to user.get().id), HttpStatus.OK)
+        return ResponseEntity(mapOf("userId" to user.get().id, "name" to user.get().name), HttpStatus.OK)
     }
 }
