@@ -4,12 +4,14 @@ import api.foodstacks.model.User
 import api.foodstacks.service.UserService
 import com.nhaarman.mockito_kotlin.*
 import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
+import org.springframework.http.HttpStatus
 import java.time.LocalDateTime
 import java.util.*
 
@@ -35,6 +37,7 @@ class UserControllerTest {
 
         verify(userService, times(1)).create(any<User>())
         Assertions.assertThat(response.body is User)
+
     }
 
     @Test
