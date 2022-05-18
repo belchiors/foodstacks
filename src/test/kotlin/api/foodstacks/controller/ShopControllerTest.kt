@@ -29,7 +29,7 @@ class ShopControllerTest {
             userId = UUID.randomUUID().toString(),
             name = "Foodstacks",
             description = "Doces e salgados",
-            status = false
+            status = false,
             number = "5581983029845",
         )
     }
