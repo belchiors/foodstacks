@@ -1,7 +1,10 @@
 package api.foodstacks.controller
 
+import api.foodstacks.model.Category
+
 import api.foodstacks.model.Shop
 import api.foodstacks.service.ShopService
+import api.foodstacks.service.UserService
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -23,14 +26,25 @@ class ShopControllerTest {
     @Mock
     lateinit var shopService: ShopService
 
+    @Mock
+    lateinit var userService: UserService
+
     private fun buildShopModel(): Shop {
         return Shop(
             id = UUID.randomUUID().toString(),
             userId = UUID.randomUUID().toString(),
             name = "Foodstacks",
             description = "Doces e salgados",
-            status = false
+            status = false,
             number = "5581983029845",
+            categories = listOf(
+                Category(
+                    name = "Doces"
+                ),
+                Category(
+                    name = "Sucos"
+                )
+            )
         )
     }
 

@@ -3,6 +3,7 @@ package api.foodstacks.controller
 import api.foodstacks.model.User
 import api.foodstacks.service.UserService
 import com.nhaarman.mockito_kotlin.*
+import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -33,7 +34,7 @@ class UserControllerTest {
         val response = usersController.createUser(userMock)
 
         verify(userService, times(1)).create(any<User>())
-        assertEquals(userMock.id, response.body?.id)
+        Assertions.assertThat(response.body is User)
     }
 
     @Test
