@@ -2,6 +2,10 @@ package api.foodstacks.controller
 
 import api.foodstacks.model.Shop
 import api.foodstacks.service.ShopService
+import api.foodstacks.service.UserService
+import com.nhaarman.mockito_kotlin.any
+import com.nhaarman.mockito_kotlin.doReturn
+import com.nhaarman.mockito_kotlin.whenever
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -22,6 +26,8 @@ class ShopControllerTest {
 
     @Mock
     lateinit var shopService: ShopService
+
+    @Mock lateinit var userService: UserService
 
     private fun buildShopModel(): Shop {
         return Shop(
@@ -60,12 +66,18 @@ class ShopControllerTest {
     @Test
     fun `test if we can change a shop's status`() {
         val shopMock = buildShopModel()
+
+        whenever(shopService.create(any<Shop>())) doReturn shopMock
+        whenever(shopService.getShopById(any<String>())) doReturn shopMock
+
         shopController.createShop(shopMock)
+
         val response = shopController.setStatus(
             status = true,
             userId = shopMock.userId,
             shopId = shopMock.id
         )
+
         assertThat(response.statusCode).isEqualTo(HttpStatus.OK)
     }
 }
