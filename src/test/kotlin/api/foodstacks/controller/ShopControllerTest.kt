@@ -28,8 +28,9 @@ class ShopControllerTest {
             id = UUID.randomUUID().toString(),
             userId = UUID.randomUUID().toString(),
             name = "Foodstacks",
+            description = "Doces e salgados",
+            status = false
             number = "5581983029845",
-            description = "Doces e salgados"
         )
     }
 
@@ -54,5 +55,17 @@ class ShopControllerTest {
         val response = shopController.getAllShops()
         assertThat(response.statusCode).isEqualTo(HttpStatus.OK)
         assertThat(response.body is List<Shop>)
+    }
+
+    @Test
+    fun `test if we can change a shop's status`() {
+        val shopMock = buildShopModel()
+        shopController.createShop(shopMock)
+        val response = shopController.setStatus(
+            status = true,
+            userId = shopMock.userId,
+            shopId = shopMock.id
+        )
+        assertThat(response.statusCode).isEqualTo(HttpStatus.OK)
     }
 }
