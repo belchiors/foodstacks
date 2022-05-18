@@ -1,5 +1,7 @@
 package api.foodstacks.controller
 
+import api.foodstacks.model.Category
+
 import api.foodstacks.model.Shop
 import api.foodstacks.service.ShopService
 import api.foodstacks.service.UserService
@@ -27,7 +29,8 @@ class ShopControllerTest {
     @Mock
     lateinit var shopService: ShopService
 
-    @Mock lateinit var userService: UserService
+    @Mock
+    lateinit var userService: UserService
 
     private fun buildShopModel(): Shop {
         return Shop(
@@ -37,6 +40,14 @@ class ShopControllerTest {
             description = "Doces e salgados",
             status = false,
             number = "5581983029845",
+            categories = listOf(
+                Category(
+                    name = "Doces"
+                ),
+                Category(
+                    name = "Sucos"
+                )
+            )
         )
     }
 

@@ -36,7 +36,8 @@ class UserControllerTest {
         val response = usersController.createUser(userMock)
 
         verify(userService, times(1)).create(any<User>())
-        assertThat(response.statusCode).isEqualTo(HttpStatus.OK)
+        Assertions.assertThat(response.body is User)
+
     }
 
     @Test
